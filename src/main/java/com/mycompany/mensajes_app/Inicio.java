@@ -6,6 +6,7 @@
 package com.mycompany.mensajes_app;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.Scanner;
 
 /**
@@ -14,7 +15,7 @@ import java.util.Scanner;
  */
 public class Inicio {
     
-    public static void main(String []arg ){
+    public static void main(String []arg ) throws SQLException{
         Conexion conexion = new Conexion();
         Connection cnx=conexion.get_connection();
         
@@ -29,8 +30,8 @@ public class Inicio {
             System.out.println("Aplicacion de mensajes");
             System.out.println("1. crear mensaje");
             System.out.println("2. listar mensajes");
-            System.out.println("3. Editar mensaje");
-            System.out.println("4. Eliminar mensaje");
+            System.out.println("3. Eliminar mensaje");
+            System.out.println("4. Editar mensaje");
             System.out.println("5. Salir");
             
             opcion =sc.nextInt();
@@ -39,11 +40,11 @@ public class Inicio {
                 case 1:
                     MensajeService.crearMensajeDB(cnx);
                 case 2:
-                    MensajeService.listarMensajes();
+                    MensajeService.listarMensajes(cnx);
                 case 3:
-                    MensajeService.borrarMensajeDB();
+                    MensajeService.borrarMensajeDB(cnx);
                 case 4:
-                    MensajeService.actualizarMensajeDB();
+                    MensajeService.actualizarMensajeDB(cnx);
                 default:
                     break;
             
